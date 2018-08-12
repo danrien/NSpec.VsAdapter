@@ -42,8 +42,8 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
         {
             var methodInfo = GetFunctionBodyInfo(example);
 
-            string specClassName = methodInfo.DeclaringType.FullName;
-            string exampleMethodName = methodInfo.Name;
+            var specClassName = methodInfo.DeclaringType.FullName;
+            var exampleMethodName = methodInfo.Name;
 
             var navigationData = debugInfoProvider.GetNavigationData(specClassName, exampleMethodName);
 
@@ -65,11 +65,9 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
 
         static MethodInfo GetFunctionBodyInfo(ExampleBase example)
         {
-            string exampleTypeName = example.GetType().Name;
+            var exampleTypeName = example.GetType().Name;
 
-            BaseExampleBodyGetter getFunctionBodyInfo;
-
-            bool hasGetterForType = typeNameToBodyGetterMap.TryGetValue(exampleTypeName, out getFunctionBodyInfo);
+            var hasGetterForType = typeNameToBodyGetterMap.TryGetValue(exampleTypeName, out var getFunctionBodyInfo);
 
             if (hasGetterForType)
             {
@@ -79,7 +77,7 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
             }
             else
             {
-                throw new ArgumentOutOfRangeException("example", String.Format("Unexpected example type: {0}", exampleTypeName));
+                throw new ArgumentOutOfRangeException(nameof(example), string.Format("Unexpected example type: {0}", exampleTypeName));
             }
         }
 
@@ -91,15 +89,13 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
 
             const string actionPrivateFieldName = "action";
 
-            Example example = (Example)baseExample;
+            var example = (Example)baseExample;
 
             var action = example.GetType()
                 .GetField(actionPrivateFieldName, BindingFlags.Instance | BindingFlags.NonPublic)
                 .GetValue(example) as Action;
 
-            var info = action.Method;
-
-            return info;
+            return action.GetMethodInfo();
         }
 
         static MethodInfo GetMethodExampleBodyInfo(ExampleBase baseExample)
@@ -108,7 +104,7 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
 
             const string methodInfoPrivateFieldName = "method";
 
-            MethodExample example = (MethodExample)baseExample;
+            var example = (MethodExample)baseExample;
 
             var info = example.GetType()
                 .GetField(methodInfoPrivateFieldName, BindingFlags.Instance | BindingFlags.NonPublic)
@@ -121,22 +117,20 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
         {
             const string asyncActionPrivateFieldName = "asyncAction";
 
-            AsyncExample example = (AsyncExample)baseExample;
+            var example = (AsyncExample)baseExample;
 
             var asyncAction = example.GetType()
                 .GetField(asyncActionPrivateFieldName, BindingFlags.Instance | BindingFlags.NonPublic)
                 .GetValue(example) as Func<Task>;
 
-            var info = asyncAction.Method;
-
-            return info;
+            return asyncAction.GetMethodInfo();
         }
 
         static MethodInfo GetAsyncMethodExampleBodyInfo(ExampleBase baseExample)
         {
             const string methodInfoPrivateFieldName = "method";
 
-            AsyncMethodExample example = (AsyncMethodExample)baseExample;
+            var example = (AsyncMethodExample)baseExample;
 
             var info = example.GetType()
                 .GetField(methodInfoPrivateFieldName, BindingFlags.Instance | BindingFlags.NonPublic)

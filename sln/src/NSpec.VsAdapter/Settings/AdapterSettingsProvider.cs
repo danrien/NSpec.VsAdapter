@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using System;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace NSpec.VsAdapter.Settings
@@ -8,21 +9,6 @@ namespace NSpec.VsAdapter.Settings
     [SettingsName(AdapterSettings.RunSettingsXmlNode)]
     public class AdapterSettingsProvider : IAdapterSettingsProvider
     {
-        // Visual Studio test infrastructure requires a default constructor
-        public AdapterSettingsProvider()
-            : this(new XmlSerializer(typeof(AdapterSettings)))
-        {
-        }
-
-        // Unit tests need a constructor with injected dependencies
-        public AdapterSettingsProvider(XmlSerializer serializer)
-        {
-            // initialize default settings, if requested before load
-            Settings = new AdapterSettings();
-
-            this.serializer = serializer;
-        }
-
         public AdapterSettings Settings { get; private set; }
 
         public void Load(XmlReader reader)
@@ -38,7 +24,7 @@ namespace NSpec.VsAdapter.Settings
                 if (reader.Read() && reader.Name == AdapterSettings.RunSettingsXmlNode)
                 {
                     // store settings locally
-                    Settings = serializer.Deserialize(reader) as AdapterSettings;
+                    Settings = AdapterSettings.FromXml(XDocument.Load(reader));
                 }
                 else
                 {
@@ -52,7 +38,5 @@ namespace NSpec.VsAdapter.Settings
                 Settings = new AdapterSettings();
             }
         }
-
-        readonly XmlSerializer serializer;
     }
 }

@@ -6,13 +6,9 @@ using NSpec.VsAdapter.Core.Discovery.Target;
 using NSpec.VsAdapter.Core.Execution;
 using NSpec.VsAdapter.Core.Execution.Target;
 using NSpec.VsAdapter.Logging;
-using NSpec.VsAdapter.ProjectObservation;
-using NSpec.VsAdapter.ProjectObservation.Projects;
-using NSpec.VsAdapter.ProjectObservation.Solution;
 using NSpec.VsAdapter.Settings;
 using NSpec.VsAdapter.TestAdapter.Discovery;
 using NSpec.VsAdapter.TestAdapter.Execution;
-using NSpec.VsAdapter.TestExplorer;
 using System;
 
 namespace NSpec.VsAdapter
@@ -45,19 +41,7 @@ namespace NSpec.VsAdapter
 
         static void RegisterContainerDiscoverer(ContainerBuilder builder)
         {
-            builder.RegisterType<TestBinaryNotifier>().As<ITestBinaryNotifier>().InstancePerLifetimeScope();
-            builder.RegisterType<NSpecTestContainerFactory>().As<ITestContainerFactory>().InstancePerLifetimeScope();
             builder.RegisterType<FileService>().As<IFileService>().InstancePerLifetimeScope();
-
-            builder.RegisterType<ProjectNotifier>().As<IProjectNotifier>().InstancePerLifetimeScope();
-            builder.RegisterType<ProjectBuildNotifier>().As<IProjectBuildNotifier>().InstancePerLifetimeScope();
-            builder.RegisterType<ProjectConverter>().As<IProjectConverter>().InstancePerLifetimeScope();
-            builder.RegisterType<ProjectWrapperFactory>().As<IProjectWrapperFactory>().InstancePerLifetimeScope();
-
-            builder.RegisterType<SolutionProvider>().As<ISolutionProvider>().InstancePerLifetimeScope();
-            builder.RegisterType<SolutionNotifier>().As<ISolutionNotifier>().InstancePerLifetimeScope();
-            builder.RegisterType<SolutionBuildManagerProvider>().As<ISolutionBuildManagerProvider>().InstancePerLifetimeScope();
-            builder.RegisterType<ProjectEnumerator>().As<IProjectEnumerator>().InstancePerLifetimeScope();
         }
 
         static void RegisterDiscoverer(ContainerBuilder builder)
@@ -86,10 +70,7 @@ namespace NSpec.VsAdapter
             builder.RegisterType<LoggerFactory>().As<ILoggerFactory>().InstancePerLifetimeScope();
         }
 
-        public static DependencyContainer Instance 
-        {
-            get { return instanceHolder.Value; }
-        }
+        public static DependencyContainer Instance => instanceHolder.Value;
 
         static readonly Lazy<DependencyContainer> instanceHolder = new Lazy<DependencyContainer>(() => new DependencyContainer(), false);
     }

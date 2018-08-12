@@ -8,14 +8,12 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
     {
         public AsyncMethodHelper(string assemblyName)
         {
-            targetAssembly = Assembly.LoadFrom(assemblyName);
+            targetAssembly = Assembly.Load(new AssemblyName(assemblyName));
         }
 
         public string GetClassNameForAsyncMethod(string className, string methodName)
         {
-            if (targetAssembly == null) return null;
-
-            var definingType = targetAssembly.GetType(className);
+            var definingType = targetAssembly?.GetType(className);
 
             if (definingType == null) return null;
 
@@ -29,13 +27,9 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
 
             var stateMachineTypeProperty = FindAsyncStateMachineTypeProperty(stateMachineAttribute);
 
-            if (stateMachineTypeProperty == null) return null;
+            var stateMachineType = stateMachineTypeProperty?.GetValue(stateMachineAttribute, new object[0]) as Type;
 
-            var stateMachineType = stateMachineTypeProperty.GetValue(stateMachineAttribute, new Object[0]) as Type;
-
-            return stateMachineType == null
-                ? null :
-                stateMachineType.FullName;
+            return stateMachineType?.FullName;
         }
 
         static MethodInfo FindAsyncMethodByName(Type definingType, string methodName)

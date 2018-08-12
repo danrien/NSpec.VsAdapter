@@ -1,208 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29D93D95-7371-4C78-B484-4A749FDEB0FF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NSpec.VsAdapter</RootNamespace>
     <AssemblyName>NSpec.VsAdapter.TestAdapter</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <RootNamespace>NSpec.VsAdapter</RootNamespace>
+    <TargetFrameworks>net452;netcoreapp1.0</TargetFrameworks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <SourceLinkOriginUrl>https://github.com/nspec/NSpec.VsAdapter</SourceLinkOriginUrl>
+    <SourceLinkCreate>true</SourceLinkCreate>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp</StartArguments>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <PackageId>NSpec.VsAdapter</PackageId>
+    <Authors>BrainCrumbz, David Vedvick</Authors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.VisualStudio.Shell.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.VisualStudio.TestPlatform.ObjectModel">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TestWindow.Interfaces">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Microsoft.VisualStudio.TestWindow.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NSpec, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\nspec.1.0.7\lib\NSpec.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reactive.Linq.3.1.1\lib\net45\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reactive.PlatformServices.3.1.1\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Windows" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.0" PrivateAssets="All" />
+    <PackageReference Include="nspec" Version="3.0.0" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" PrivateAssets="All" />
+    <PackageReference Include="System.Reactive" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="System.Reactive.Core" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="System.Reactive.Linq" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="System.Reactive.PlatformServices" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.1.1" PrivateAssets="All" />
+    <PackageReference Include="Autofac" Version="4.6.0" PrivateAssets="All" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="AdapterInfo.cs" />
-    <Compile Include="Common\ContextFinder.cs" />
-    <Compile Include="Common\IContextFinder.cs" />
-    <Compile Include="Core\CrossDomain\IProxyableFactory.cs" />
-    <Compile Include="Core\CrossDomain\Proxyable.cs" />
-    <Compile Include="Core\CrossDomain\ProxyableFactory.cs" />
-    <Compile Include="Core\Discovery\Target\AsyncMethodHelper.cs" />
-    <Compile Include="Core\Discovery\Target\ExampleFinder.cs" />
-    <Compile Include="Core\Discovery\Target\IProxyableTestDiscoverer.cs" />
-    <Compile Include="Core\Discovery\Target\ProxyableTestDiscoverer.cs" />
-    <Compile Include="Core\Discovery\ProxyableTestDiscovererFactory.cs" />
-    <Compile Include="Core\Execution\Target\ContextExecutor.cs" />
-    <Compile Include="Core\Execution\BinaryTestExecutor.cs" />
-    <Compile Include="Core\Execution\ExecutedExample.cs" />
-    <Compile Include="Core\Execution\Target\ExecutedExampleMapper.cs" />
-    <Compile Include="Core\Execution\Target\IExecutedExampleMapper.cs" />
-    <Compile Include="Core\Execution\Target\IProxyableTestExecutor.cs" />
-    <Compile Include="Core\Execution\ProgressRecorder.cs" />
-    <Compile Include="Core\Execution\ProgressRecorderFactory.cs" />
-    <Compile Include="Core\Execution\Target\ExecutionReporter.cs" />
-    <Compile Include="Core\Execution\IBinaryTestExecutor.cs" />
-    <Compile Include="Core\Execution\IProgressRecorder.cs" />
-    <Compile Include="Core\Execution\IProgressRecorderFactory.cs" />
-    <Compile Include="Core\Execution\Target\ProxyableTestExecutor.cs" />
-    <Compile Include="Core\Execution\ProxyableTestExecutorFactory.cs" />
-    <Compile Include="Core\Execution\Target\RunnableContexts.cs" />
-    <Compile Include="Core\Execution\Target\RunnableContextFinder.cs" />
-    <Compile Include="Logging\CrossDomainLogger.cs" />
-    <Compile Include="Logging\IBaseLogger.cs" />
-    <Compile Include="Logging\ILoggerFactory.cs" />
-    <Compile Include="Logging\ICrossDomainLogger.cs" />
-    <Compile Include="Logging\LoggerFactory.cs" />
-    <Compile Include="Core\Discovery\Target\DebugInfoProvider.cs" />
-    <Compile Include="DependencyContainer.cs" />
-    <Compile Include="Common\FileService.cs" />
-    <Compile Include="IAdapterInfo.cs" />
-    <Compile Include="Core\Discovery\Target\IDebugInfoProvider.cs" />
-    <Compile Include="Logging\IOutputLogger.cs" />
-    <Compile Include="Core\CrossDomain\AppDomainFactory.cs" />
-    <Compile Include="Core\Discovery\BinaryTestDiscoverer.cs" />
-    <Compile Include="DisposableExtensions.cs" />
-    <Compile Include="Core\Discovery\Target\DiscoveredExampleMapper.cs" />
-    <Compile Include="Core\CrossDomain\IAppDomainFactory.cs" />
-    <Compile Include="Core\Discovery\IBinaryTestDiscoverer.cs" />
-    <Compile Include="Core\CrossDomain\ICrossDomainRunner.cs" />
-    <Compile Include="Core\CrossDomain\ITargetAppDomain.cs" />
-    <Compile Include="Core\CrossDomain\CrossDomainRunner.cs" />
-    <Compile Include="Core\CrossDomain\TargetAppDomain.cs" />
-    <Compile Include="Core\Discovery\DiscoveredExample.cs" />
-    <Compile Include="Logging\OutputLogger.cs" />
-    <Compile Include="ProjectObservation\HierarchyUtils.cs" />
-    <Compile Include="ProjectObservation\Projects\IProjectBuildNotifier.cs" />
-    <Compile Include="ProjectObservation\Projects\IProjectConverter.cs" />
-    <Compile Include="ProjectObservation\Projects\IProjectEnumerator.cs" />
-    <Compile Include="ProjectObservation\Projects\IProjectNotifier.cs" />
-    <Compile Include="ProjectObservation\Projects\IProjectWrapper.cs" />
-    <Compile Include="ProjectObservation\Projects\IProjectWrapperFactory.cs" />
-    <Compile Include="Logging\ExceptionLogInfo.cs" />
-    <Compile Include="Settings\AdapterSettingsProvider.cs" />
-    <Compile Include="Settings\IAdapterSettings.cs" />
-    <Compile Include="Settings\IAdapterSettingsProvider.cs" />
-    <Compile Include="Settings\ISettingsRepository.cs" />
-    <Compile Include="Settings\AdapterSettings.cs" />
-    <Compile Include="Settings\SettingsRepository.cs" />
-    <Compile Include="TestAdapter\Discovery\IMultiSourceTestDiscoverer.cs" />
-    <Compile Include="TestAdapter\Execution\IMultiSourceTestExecutor.cs" />
-    <Compile Include="TestAdapter\Discovery\IMultiSourceTestDiscovererFactory.cs" />
-    <Compile Include="TestAdapter\Execution\IMultiSourceTestExecutorFactory.cs" />
-    <Compile Include="TestAdapter\Discovery\ITestCaseMapper.cs" />
-    <Compile Include="TestAdapter\Execution\ITestResultMapper.cs" />
-    <Compile Include="TestAdapter\Discovery\MultiSourceTestDiscoverer.cs" />
-    <Compile Include="TestAdapter\Discovery\MultiSourceTestDiscovererFactory.cs" />
-    <Compile Include="TestAdapter\Execution\MultiSourceTestExecutor.cs" />
-    <Compile Include="TestAdapter\Execution\MultiSourceTestExecutorFactory.cs" />
-    <Compile Include="TestAdapter\Discovery\TestCaseMapper.cs" />
-    <Compile Include="TestAdapter\Execution\TestResultMapper.cs" />
-    <Compile Include="TestExplorer\ITestContainerFactory.cs" />
-    <Compile Include="ProjectObservation\Solution\ISolutionBuildManagerProvider.cs" />
-    <Compile Include="ProjectObservation\Solution\ISolutionNotifier.cs" />
-    <Compile Include="ProjectObservation\Solution\ISolutionProvider.cs" />
-    <Compile Include="ProjectObservation\ITestBinaryNotifier.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Common\IFileService.cs" />
-    <Compile Include="TestExplorer\NSpecTestContainer.cs" />
-    <Compile Include="TestExplorer\NSpecTestContainerDiscoverer.cs" />
-    <Compile Include="TestExplorer\NSpecTestContainerFactory.cs" />
-    <Compile Include="TestAdapter\Discovery\NSpecTestDiscoverer.cs" />
-    <Compile Include="ProjectObservation\TestBinaryNotifier.cs" />
-    <Compile Include="TestAdapter\Execution\NSpecTestExecutor.cs" />
-    <Compile Include="ProjectObservation\Projects\ProjectBuildNotifier.cs" />
-    <Compile Include="ProjectObservation\Projects\ProjectConverter.cs" />
-    <Compile Include="ProjectObservation\Projects\ProjectEnumerator.cs" />
-    <Compile Include="ProjectObservation\ProjectInfo.cs" />
-    <Compile Include="ProjectObservation\Projects\ProjectNotifier.cs" />
-    <Compile Include="ProjectObservation\Projects\ProjectWrapper.cs" />
-    <Compile Include="ProjectObservation\Projects\ProjectWrapperFactory.cs" />
-    <Compile Include="ProjectObservation\Solution\SolutionBuildManagerProvider.cs" />
-    <Compile Include="ProjectObservation\SolutionInfo.cs" />
-    <Compile Include="ProjectObservation\Solution\SolutionNotifier.cs" />
-    <Compile Include="ProjectObservation\Solution\SolutionProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net452'">
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="11.0.0" PrivateAssets="All" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="NSpec.VsAdapter.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0'">
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="1.1.2" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="PreventTestPlatformObjectModelCopyLocal" AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'Microsoft.VisualStudio.TestPlatform.ObjectModel'" />
+    </ItemGroup>
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

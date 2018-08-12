@@ -40,10 +40,7 @@ namespace NSpec.VsAdapter.TestAdapter.Execution
 
         public void Cancel()
         {
-            if (multiSourceTestExecutor != null)
-            {
-                multiSourceTestExecutor.CancelRun();
-            }
+            multiSourceTestExecutor?.CancelRun();
         }
 
         IMultiSourceTestExecutor multiSourceTestExecutor;

@@ -136,11 +136,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TestAdapter\Discovery\MultiSourceTestDiscoverer_desc.cs" />
-    <Compile Include="ProjectObservation\TestBinaryNotifier_desc.cs" />
-    <Compile Include="ProjectObservation\ProjectBuildNotifier_desc.cs" />
-    <Compile Include="ProjectObservation\ProjectConverter_desc.cs" />
-    <Compile Include="ProjectObservation\ProjectNotifier_desc.cs" />
-    <Compile Include="ProjectObservation\SolutionNotifier_desc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

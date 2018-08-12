@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using NSpec.VsAdapter.Logging;
+﻿using NSpec.VsAdapter.Logging;
 using System;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace NSpec.VsAdapter.Core.Discovery.Target
 {
@@ -17,7 +17,7 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
             }
             catch (Exception ex)
             {
-                string message = String.Format("Cannot setup debug info for binary '{0}'", binaryPath);
+                var message = string.Format("Cannot setup debug info for binary '{0}'", binaryPath);
 
                 logger.Debug(new ExceptionLogInfo(ex), message);
 
@@ -30,7 +30,7 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
             }
             catch (Exception ex)
             {
-                string message = String.Format("Cannot setup async debug info for binary '{0}'", binaryPath);
+                var message = string.Format("Cannot setup async debug info for binary '{0}'", binaryPath);
 
                 logger.Debug(new ExceptionLogInfo(ex), message);
 
@@ -49,11 +49,11 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
 
             var navData = session.GetNavigationData(declaringClassName, methodName);
 
-            if (navData == null || navData.FileName == null)
+            if (navData?.FileName == null)
             {
                 if (asyncMethodHelper != noAsyncHelper)
                 {
-                    string stateMachineClassName = asyncMethodHelper.GetClassNameForAsyncMethod(declaringClassName, methodName);
+                    var stateMachineClassName = asyncMethodHelper.GetClassNameForAsyncMethod(declaringClassName, methodName);
 
                     if (stateMachineClassName != null)
                     {
@@ -62,9 +62,9 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
                 }
             }
 
-            if (navData != null && navData.FileName != null)
+            if (navData?.FileName != null)
             {
-                string message = String.Format("Debug info found for method '{0}'.'{1}' in binary '{2}'",
+                var message = string.Format("Debug info found for method '{0}'.'{1}' in binary '{2}'",
                     declaringClassName, methodName, binaryPath);
 
                 logger.Trace(message);
@@ -73,7 +73,7 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
             }
             else
             {
-                string message = String.Format("Cannot get debug info for method '{0}'.'{1}' in binary '{2}'",
+                var message = string.Format("Cannot get debug info for method '{0}'.'{1}' in binary '{2}'",
                     declaringClassName, methodName, binaryPath);
 
                 logger.Debug(message);
@@ -82,9 +82,9 @@ namespace NSpec.VsAdapter.Core.Discovery.Target
             }
         }
 
-        DiaNavigationData NoNavigationData()
+        static DiaNavigationData NoNavigationData()
         {
-            return new DiaNavigationData(String.Empty, 0, 0);
+            return new DiaNavigationData(string.Empty, 0, 0);
         }
 
         readonly string binaryPath;
