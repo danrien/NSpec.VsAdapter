@@ -1,4 +1,5 @@
-﻿using NSpec.VsAdapter.Core.CrossDomain;
+﻿#if NET452
+using NSpec.VsAdapter.Core.CrossDomain;
 using NSpec.VsAdapter.Core.Execution.Target;
 
 namespace NSpec.VsAdapter.Core.Execution
@@ -7,3 +8,4 @@ namespace NSpec.VsAdapter.Core.Execution
     {
     }
 }
+#endif

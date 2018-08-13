@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET452
+using System;
 using System.IO;
 using System.Reflection;
 using System.Security.Policy;
@@ -33,3 +34,4 @@ namespace NSpec.VsAdapter.Core.CrossDomain
         }
     }
 }
+#endif

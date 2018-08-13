@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET452
+using System;
 using System.Reflection;
 
 namespace NSpec.VsAdapter.Core.CrossDomain
@@ -31,3 +32,4 @@ namespace NSpec.VsAdapter.Core.CrossDomain
         readonly AppDomain appDomain;
     }
 }
+#endif

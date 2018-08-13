@@ -1,4 +1,5 @@
-﻿namespace NSpec.VsAdapter.Core.CrossDomain
+﻿#if NET452
+namespace NSpec.VsAdapter.Core.CrossDomain
 {
     public class ProxyableFactory<TImplementation, TInterface> : IProxyableFactory<TInterface>
         where TImplementation : Proxyable, TInterface
@@ -18,3 +19,4 @@
         }
     }
 }
+#endif

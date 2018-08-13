@@ -47,7 +47,9 @@ namespace NSpec.VsAdapter
         static void RegisterDiscoverer(ContainerBuilder builder)
         {
             builder.RegisterType<MultiSourceTestDiscovererFactory>().As<IMultiSourceTestDiscovererFactory>().InstancePerLifetimeScope();
+            #if NET452
             builder.RegisterType<ProxyableTestDiscovererFactory>().As<IProxyableFactory<IProxyableTestDiscoverer>>().InstancePerLifetimeScope();
+            #endif
             builder.RegisterType<BinaryTestDiscoverer>().As<IBinaryTestDiscoverer>().InstancePerLifetimeScope();
             builder.RegisterType<TestCaseMapper>().As<ITestCaseMapper>().InstancePerLifetimeScope();
         }
@@ -55,7 +57,9 @@ namespace NSpec.VsAdapter
         static void RegisterExecutor(ContainerBuilder builder)
         {
             builder.RegisterType<MultiSourceTestExecutorFactory>().As<IMultiSourceTestExecutorFactory>().InstancePerLifetimeScope();
+            #if NET452
             builder.RegisterType<ProxyableTestExecutorFactory>().As<IProxyableFactory<IProxyableTestExecutor>>().InstancePerLifetimeScope();
+            #endif
             builder.RegisterType<BinaryTestExecutor>().As<IBinaryTestExecutor>().InstancePerLifetimeScope();
             builder.RegisterType<ProgressRecorderFactory>().As<IProgressRecorderFactory>().InstancePerLifetimeScope();
             builder.RegisterType<TestResultMapper>().As<ITestResultMapper>().InstancePerLifetimeScope();
@@ -63,7 +67,9 @@ namespace NSpec.VsAdapter
 
         static void RegisterCommon(ContainerBuilder builder)
         {
+            #if NET452
             builder.RegisterType<AppDomainFactory>().As<IAppDomainFactory>().InstancePerLifetimeScope();
+            #endif
             builder.RegisterGeneric(typeof(CrossDomainRunner<,>)).As(typeof(ICrossDomainRunner<,>)).InstancePerLifetimeScope();
             builder.RegisterType<AdapterInfo>().As<IAdapterInfo>().InstancePerLifetimeScope();
             builder.RegisterType<SettingsRepository>().As<ISettingsRepository>().InstancePerLifetimeScope();
