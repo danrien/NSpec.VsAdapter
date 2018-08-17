@@ -4,11 +4,6 @@ using Microsoft.VisualStudio.TestPlatform.ObjectModel.Adapter;
 using NSpec.VsAdapter.Settings;
 using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NSpec.VsAdapter.UnitTests.Settings
 {

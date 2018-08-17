@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 
 namespace NSpec.VsAdapter.IntegrationTests
 {

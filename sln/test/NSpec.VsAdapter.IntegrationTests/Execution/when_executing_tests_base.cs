@@ -5,6 +5,7 @@ using NSpec.VsAdapter.IntegrationTests.TestData;
 using NSpec.VsAdapter.TestAdapter.Execution;
 using NUnit.Framework;
 using System.Collections.Generic;
+using NUnit.Framework.Internal;
 
 namespace NSpec.VsAdapter.IntegrationTests.Execution
 {
