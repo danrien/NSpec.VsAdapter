@@ -2,11 +2,11 @@
   <PropertyGroup>
     <AssemblyName>NSpec.VsAdapter.UnitTests</AssemblyName>
     <RootNamespace>NSpec.VsAdapter.UnitTests</RootNamespace>
-    <TargetFrameworks>net452;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutofacContrib.NSubstitute" Version="4.0.1" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.5.0" />
     <PackageReference Include="FluentAssertions" Version="4.19.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
@@ -15,4 +15,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NSpec.VsAdapter\NSpec.VsAdapter.csproj" />
   </ItemGroup>
+	<Target Name="PreventTestPlatformObjectModelCopyLocal" AfterTargets="ResolveReferences">
+		<ItemGroup>
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'Microsoft.VisualStudio.TestPlatform.ObjectModel'" />
+		</ItemGroup>
+	</Target>
 </Project>

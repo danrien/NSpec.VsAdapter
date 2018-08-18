@@ -9,31 +9,22 @@ namespace NSpec.VsAdapter.UnitTests.Settings
 {
     [TestFixture]
     [Category("SettingsRepository")]
-    public abstract class SettingsRepository_desc_base
+    public abstract class SettingsRepository_desc_base : TestingContext
     {
         protected SettingsRepository repository;
 
-        protected AutoSubstitute autoSubstitute;
         protected IDiscoveryContext discoveryContext;
         protected IRunSettings runSettings;
 
         [SetUp]
-        public virtual void before_each()
+        public override void before_each()
         {
-            autoSubstitute = new AutoSubstitute();
+		    repository = GetFixtureFor<SettingsRepository>();
 
-            repository = autoSubstitute.Resolve<SettingsRepository>();
-
-            discoveryContext = autoSubstitute.Resolve<IDiscoveryContext>();
-            runSettings = autoSubstitute.Resolve<IRunSettings>();
+            discoveryContext = GetSubstituteFor<IDiscoveryContext>();
+            runSettings = GetSubstituteFor<IRunSettings>();
             
             discoveryContext.RunSettings.Returns(runSettings);
-        }
-
-        [TearDown]
-        public virtual void after_each()
-        {
-            autoSubstitute.Dispose();
         }
     }
 
@@ -50,7 +41,7 @@ namespace NSpec.VsAdapter.UnitTests.Settings
         {
             base.before_each();
 
-            var settingsProvider = autoSubstitute.Resolve<IAdapterSettingsProvider>();
+            var settingsProvider = GetFixtureFor<IAdapterSettingsProvider>();
 
             runSettings.GetSettings(AdapterSettings.RunSettingsXmlNode).Returns(settingsProvider);
 

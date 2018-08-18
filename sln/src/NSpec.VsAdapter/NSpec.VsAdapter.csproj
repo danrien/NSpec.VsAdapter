@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>NSpec.VsAdapter.TestAdapter</AssemblyName>
     <RootNamespace>NSpec.VsAdapter</RootNamespace>
-    <TargetFrameworks>net452;netcoreapp1.0</TargetFrameworks>
+    <TargetFrameworks>net46;netcoreapp1.0</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SourceLinkOriginUrl>https://github.com/nspec/NSpec.VsAdapter</SourceLinkOriginUrl>
     <SourceLinkCreate>true</SourceLinkCreate>
@@ -22,10 +22,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" PrivateAssets="All" />
     <PackageReference Include="Autofac" Version="4.6.0" PrivateAssets="All" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net452'">
-    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="11.0.0" PrivateAssets="All" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.0.0" PrivateAssets="All" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.0'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'net46'">
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.0.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="1.1.2" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3D324323-F548-411C-A2CF-55C1C9337174}"
 EndProject
@@ -23,11 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F84D4F30-716D-49AA-B552-DF13539C757E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSpec.VsAdapter", "src\NSpec.VsAdapter\NSpec.VsAdapter.csproj", "{29D93D95-7371-4C78-B484-4A749FDEB0FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSpec.VsAdapter", "src\NSpec.VsAdapter\NSpec.VsAdapter.csproj", "{29D93D95-7371-4C78-B484-4A749FDEB0FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSpec.VsAdapter.UnitTests", "test\NSpec.VsAdapter.UnitTests\NSpec.VsAdapter.UnitTests.csproj", "{1A556ED6-FB2A-48DB-A5E0-8CD5923035AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSpec.VsAdapter.UnitTests", "test\NSpec.VsAdapter.UnitTests\NSpec.VsAdapter.UnitTests.csproj", "{1A556ED6-FB2A-48DB-A5E0-8CD5923035AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSpec.VsAdapter.IntegrationTests", "test\NSpec.VsAdapter.IntegrationTests\NSpec.VsAdapter.IntegrationTests.csproj", "{3D3C02A5-774D-4659-BDDE-3AF3CC2675CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSpec.VsAdapter.IntegrationTests", "test\NSpec.VsAdapter.IntegrationTests\NSpec.VsAdapter.IntegrationTests.csproj", "{3D3C02A5-774D-4659-BDDE-3AF3CC2675CA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2C743124-C1C6-4B5D-A6C5-16819A726919} = {2C743124-C1C6-4B5D-A6C5-16819A726919}
 		{716E1B2B-C0F4-450F-BCD0-95CF829126B9} = {716E1B2B-C0F4-450F-BCD0-95CF829126B9}
@@ -69,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B12697
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "NSpec.VsAdapter.Vsix", "src\NSpec.VsAdapter.Vsix\NSpec.VsAdapter.Vsix.csproj", "{B8C986E3-040F-45C0-AC1A-F2ACF3FACB38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSpec.VsAdapter.Vsix", "src\NSpec.VsAdapter.Vsix\NSpec.VsAdapter.Vsix.csproj", "{A2140B36-73D2-4956-867E-D0F42DB67809}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,10 +117,10 @@ Global
 		{FF4AD74A-0B1F-40E6-BF9A-7BC82DE96E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF4AD74A-0B1F-40E6-BF9A-7BC82DE96E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF4AD74A-0B1F-40E6-BF9A-7BC82DE96E8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8C986E3-040F-45C0-AC1A-F2ACF3FACB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8C986E3-040F-45C0-AC1A-F2ACF3FACB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8C986E3-040F-45C0-AC1A-F2ACF3FACB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8C986E3-040F-45C0-AC1A-F2ACF3FACB38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2140B36-73D2-4956-867E-D0F42DB67809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2140B36-73D2-4956-867E-D0F42DB67809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2140B36-73D2-4956-867E-D0F42DB67809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2140B36-73D2-4956-867E-D0F42DB67809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +140,9 @@ Global
 		{FF4AD74A-0B1F-40E6-BF9A-7BC82DE96E8D} = {4B912E41-B967-4AA4-90DD-8951B964DC9F}
 		{0F8197F5-69C1-48A4-A52E-FAD21EBD30D0} = {83BC3666-422D-4AF6-9632-390ED4B5145A}
 		{4B912E41-B967-4AA4-90DD-8951B964DC9F} = {83BC3666-422D-4AF6-9632-390ED4B5145A}
-		{B8C986E3-040F-45C0-AC1A-F2ACF3FACB38} = {F84D4F30-716D-49AA-B552-DF13539C757E}
+		{A2140B36-73D2-4956-867E-D0F42DB67809} = {F84D4F30-716D-49AA-B552-DF13539C757E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8266C90-C116-4741-A109-A3CFEFF0DF0B}
 	EndGlobalSection
 EndGlobal
