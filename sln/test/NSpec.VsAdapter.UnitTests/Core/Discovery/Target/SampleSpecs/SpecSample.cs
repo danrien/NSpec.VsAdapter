@@ -1,4 +1,5 @@
 ﻿using NSpec;
+using NSpec.Assertions;
 using System;
 using System.Reflection;
 
@@ -16,14 +17,14 @@ namespace NSpec.VsAdapter.UnitTests.Core.Discovery.Target.SampleSpecs
         [Tag("Tag-1A Tag-1B")]
         void method_context_1()
         { // # 18
-            it["parent example 1A"] = () => valueUnderTest.should_be_true();
+            it["parent example 1A"] = () => valueUnderTest.ShouldBeTrue();
 
-            it["parent example 1B"] = () => valueUnderTest.should_be_true();
+            it["parent example 1B"] = () => valueUnderTest.ShouldBeTrue();
         } // # 22
 
         void method_context_2()
         { // # 25
-            it["parent example 2A"] = () => valueUnderTest.should_be_true();
+            it["parent example 2A"] = () => valueUnderTest.ShouldBeTrue();
         } // # 27
     }
 
@@ -38,7 +39,7 @@ namespace NSpec.VsAdapter.UnitTests.Core.Discovery.Target.SampleSpecs
 
         void method_context_4()
         { // # 40
-            it["child example 4A"] = () => valueUnderTest.should_be_true();
+            it["child example 4A"] = () => valueUnderTest.ShouldBeTrue();
         } // # 42
     }
 

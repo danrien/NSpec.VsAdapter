@@ -2,14 +2,16 @@
   <PropertyGroup>
     <AssemblyName>NSpec.VsAdapter.IntegrationTests</AssemblyName>
     <RootNamespace>NSpec.VsAdapter.IntegrationTests</RootNamespace>
-    <TargetFrameworks>net452;netcoreapp1.0</TargetFrameworks>
+    <TargetFramework>net46</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="4.19.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+		<PackageReference Include="NSpec" Version="3.0.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+		<PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.0.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NSpec.VsAdapter\NSpec.VsAdapter.csproj" />

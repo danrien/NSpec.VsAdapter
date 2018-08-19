@@ -1,6 +1,7 @@
 ﻿using AutofacContrib.NSubstitute;
 using FluentAssertions;
 using FluentAssertions.Equivalency;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NSpec.VsAdapter.Core.Execution;
 using NSpec.VsAdapter.TestAdapter.Execution;
 using NUnit.Framework;

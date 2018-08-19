@@ -4,13 +4,17 @@
     <RootNamespace>NSpec.VsAdapter.UnitTests</RootNamespace>
     <TargetFramework>net46</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+	</PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutofacContrib.NSubstitute" Version="4.0.1" />
     <PackageReference Include="FluentAssertions" Version="4.19.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="NSpec" Version="3.0.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+		<PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="15.0.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NSpec.VsAdapter\NSpec.VsAdapter.csproj" />

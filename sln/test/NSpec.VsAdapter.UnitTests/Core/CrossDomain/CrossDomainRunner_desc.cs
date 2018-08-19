@@ -1,35 +1,37 @@
-﻿using AutoFixture;
+﻿using AutofacContrib.NSubstitute;
 using FluentAssertions;
 using NSpec.VsAdapter.Core.CrossDomain;
 using NSubstitute;
 using NUnit.Framework;
 using System;
-using static NSpec.VsAdapter.UnitTests.Core.CrossDomain.CrossDomainRunner_desc_base;
 
 namespace NSpec.VsAdapter.UnitTests.Core.CrossDomain
 {
     [TestFixture]
     [Category("CrossDomainRunner")]
-    public class CrossDomainRunner_desc_base : TestingContext
+    public class CrossDomainRunner_desc_base
     {
         protected CrossDomainRunner<IDummyProxyable, float> runner;
 
+        protected AutoSubstitute autoSubstitute;
         protected IAppDomainFactory appDomainFactory;
-		protected ITargetAppDomain targetDomain;
+        protected ITargetAppDomain targetDomain;
         protected IProxyableFactory<IDummyProxyable> proxyableFactory;
         protected IDummyProxyable proxyable;
 
         protected const string somePath = @".\some\path\to\library.dll";
 
         [SetUp]
-        public override void before_each()
+        public virtual void before_each()
         {
-		    targetDomain = GetSubstituteFor<ITargetAppDomain>();
-            appDomainFactory = GetSubstituteFor<IAppDomainFactory>();
+            autoSubstitute = new AutoSubstitute();
+
+            targetDomain = autoSubstitute.Resolve<ITargetAppDomain>();
+            appDomainFactory = autoSubstitute.Resolve<IAppDomainFactory>();
             appDomainFactory.Create(somePath).Returns(targetDomain);
 
-            proxyable = GetSubstituteFor<IDummyProxyable>();
-            proxyableFactory = GetSubstituteFor<IProxyableFactory<IDummyProxyable>>();
+            proxyable = autoSubstitute.Resolve<IDummyProxyable>();
+            proxyableFactory = autoSubstitute.Resolve<IProxyableFactory<IDummyProxyable>>();
             proxyableFactory.CreateProxy(targetDomain).Returns(proxyable);
 
             runner = new CrossDomainRunner<IDummyProxyable, float>(appDomainFactory, proxyableFactory);
@@ -39,6 +41,12 @@ namespace NSpec.VsAdapter.UnitTests.Core.CrossDomain
                 float input = callInfo.Arg<float>();
                 return input;
             });
+        }
+
+        [TearDown]
+        public virtual void after_each()
+        {
+            autoSubstitute.Dispose();
         }
 
         public interface IDummyProxyable : IDisposable

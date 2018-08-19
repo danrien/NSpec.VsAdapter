@@ -53,12 +53,6 @@ namespace NSpec.VsAdapter.UnitTests.Core.Execution
         {
             testExecutionRecorder.DidNotReceive().RecordAttachments(Arg.Any<IList<AttachmentSet>>());
         }
-
-        [Test]
-        public void it_should_claim_infinite_lease_lifetime()
-        {
-            recorder.GetLifetimeService().Should().BeNull();
-        }
     }
 
     public class ProgressRecorder_when_recording_executed_example : ProgressRecorder_desc

@@ -6,6 +6,7 @@ using NSpec.VsAdapter.TestAdapter.Execution;
 using NUnit.Framework;
 using System.Collections.Generic;
 using NUnit.Framework.Internal;
+using TestResult = Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult;
 
 namespace NSpec.VsAdapter.IntegrationTests.Execution
 {

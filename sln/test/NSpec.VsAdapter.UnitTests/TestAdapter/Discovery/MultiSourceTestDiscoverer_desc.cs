@@ -1,4 +1,8 @@
-﻿using FluentAssertions;
+﻿using AutofacContrib.NSubstitute;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Adapter;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
 using NSpec.VsAdapter.Core.Discovery;
 using NSpec.VsAdapter.Logging;
 using NSpec.VsAdapter.Settings;
@@ -12,10 +16,11 @@ namespace NSpec.VsAdapter.UnitTests.TestAdapter.Discovery
 {
     [TestFixture]
     [Category("MultiSourceTestDiscoverer")]
-    public class MultiSourceTestDiscoverer_when_discovering : TestingContext
+    public class MultiSourceTestDiscoverer_when_discovering
     {
         MultiSourceTestDiscoverer discoverer;
 
+        AutoSubstitute autoSubstitute;
         List<TestCase> testCases;
         ITestCaseDiscoverySink discoverySink;
         IBinaryTestDiscoverer binaryTestDiscoverer;
@@ -56,10 +61,13 @@ namespace NSpec.VsAdapter.UnitTests.TestAdapter.Discovery
             };
         }
 
-        public override void before_each()
+        [SetUp]
+        public virtual void before_each()
         {
+            autoSubstitute = new AutoSubstitute();
+
             testCases = new List<TestCase>();
-            discoverySink = GetSubstituteFor<ITestCaseDiscoverySink>();
+            discoverySink = autoSubstitute.Resolve<ITestCaseDiscoverySink>();
             discoverySink.When(sink => sink.SendTestCase(Arg.Any<TestCase>())).Do(callInfo =>
                 {
                     var discoveredTestCase = callInfo.Arg<TestCase>();
@@ -67,7 +75,7 @@ namespace NSpec.VsAdapter.UnitTests.TestAdapter.Discovery
                     testCases.Add(discoveredTestCase);
                 });
 
-            binaryTestDiscoverer = GetSubstituteFor<IBinaryTestDiscoverer>();
+            binaryTestDiscoverer = autoSubstitute.Resolve<IBinaryTestDiscoverer>();
 
             binaryTestDiscoverer.Discover(null, null, null).ReturnsForAnyArgs(callInfo =>
                 {
@@ -83,7 +91,7 @@ namespace NSpec.VsAdapter.UnitTests.TestAdapter.Discovery
                     }
                 });
 
-            var testCaseMapper = GetSubstituteFor<ITestCaseMapper>();
+            var testCaseMapper = autoSubstitute.Resolve<ITestCaseMapper>();
             testCaseMapper.FromDiscoveredExample(null).ReturnsForAnyArgs(callInfo =>
                 {
                     var discoveredExample = callInfo.Arg<DiscoveredExample>();
@@ -93,17 +101,23 @@ namespace NSpec.VsAdapter.UnitTests.TestAdapter.Discovery
                     return testCase;
                 });
 
-            var settingsRepository = GetSubstituteFor<ISettingsRepository>();
+            var settingsRepository = autoSubstitute.Resolve<ISettingsRepository>();
 
-            var messageLogger = GetSubstituteFor<IMessageLogger>();
+            var messageLogger = autoSubstitute.Resolve<IMessageLogger>();
 
-            outputLogger = GetSubstituteFor<IOutputLogger>();
-            var loggerFactory = GetSubstituteFor<ILoggerFactory>();
+            outputLogger = autoSubstitute.Resolve<IOutputLogger>();
+            var loggerFactory = autoSubstitute.Resolve<ILoggerFactory>();
             loggerFactory.CreateOutput(messageLogger, Arg.Any<IAdapterSettings>()).Returns(outputLogger);
 
             discoverer = new MultiSourceTestDiscoverer(sources, binaryTestDiscoverer, testCaseMapper, settingsRepository, loggerFactory);
 
             discoverer.DiscoverTests(discoverySink, messageLogger, autoSubstitute.Resolve<IDiscoveryContext>());
+        }
+
+        [TearDown]
+        public virtual void after_each()
+        {
+            autoSubstitute.Dispose();
         }
 
         [Test]

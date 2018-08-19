@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using FluentAssertions;
 using NSpec;
 using NSpec.Domain;
 using NSpec.Domain.Formatters;
@@ -43,6 +44,6 @@ public class DebuggerShim
         var results = runner.Run(builder.Contexts().Build());
 
         //assert that there aren't any failures
-        results.Failures().Count().should_be(0);
+        results.Failures().Count().Should().Be(0);
     }
 }

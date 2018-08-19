@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace NSpec.VsAdapter.IntegrationTests
