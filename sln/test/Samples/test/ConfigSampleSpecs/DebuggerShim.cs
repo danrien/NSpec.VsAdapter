@@ -3,6 +3,7 @@ using System.Reflection;
 using NSpec;
 using NSpec.Domain;
 using NSpec.Domain.Formatters;
+using Shouldly;
 
 /*
  * Howdy,
@@ -43,6 +44,6 @@ public class DebuggerShim
         var results = runner.Run(builder.Contexts().Build());
 
         //assert that there aren't any failures
-        (results.Failures().Count() == 0).ShouldBeTrue();
+        (!results.Failures().Any()).ShouldBeTrue();
     }
 }
