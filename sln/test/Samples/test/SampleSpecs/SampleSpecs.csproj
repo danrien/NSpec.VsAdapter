@@ -3,7 +3,6 @@
     <AssemblyName>SampleSpecs</AssemblyName>
     <RootNamespace>SampleSpecs</RootNamespace>
     <TargetFramework>net46</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
